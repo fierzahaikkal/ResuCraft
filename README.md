@@ -57,7 +57,7 @@ To get started with the Resume Builder Application, follow these steps:
 
 Contributions to the Resume Builder Application are welcome! If you have any suggestions, feature requests, or bug reports, feel free to open an issue or submit a pull request.
 
-Also if you interest for landing page, please visit [https://github.com/leoMirandaa](Leo Miranda) thank you
+Also if you interest for landing page, please visit [Leo Miranda](https://github.com/leoMirandaa) thank you
 
 ## License
 
