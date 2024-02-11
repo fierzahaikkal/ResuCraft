@@ -1,3 +1,6 @@
+import { fromBottom } from "@/lib/variants";
+import { Motion } from "./motion/Motion";
+import { TextReveal } from "./motion/TextReveal";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
   Card,
@@ -7,14 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-interface TestimonialProps {
-  image: string;
-  name: string;
-  userName: string;
-  comment: string;
-}
-
-const testimonials: TestimonialProps[] = [
+const testimonials = [
   {
     image:
       "https://media.licdn.com/dms/image/D5603AQHY_jCbtPG8UA/profile-displayphoto-shrink_800_800/0/1697957892695?e=1712793600&v=beta&t=EoT3ZMycrnR6viZ7vIVpHNT3-ZvHFLh44TvIgEQrG4g",
@@ -60,27 +56,27 @@ const testimonials: TestimonialProps[] = [
     userName: "@cuma_temen_kok",
     comment: "Aplikasi ini membantu aku berani ketemu calon mertua!🙏🏻",
   },
-];
+] as const;
 
 export const Testimonials = () => {
   return (
     <section id="testimonials" className="container py-24 sm:py-32">
       <h2 className="text-3xl font-bold md:text-4xl">
-        Temukan Alasan
-        <span className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent">
-          {" "}
-          Mengapa{" "}
-        </span>
-        Orang-orang Menyukai ResuCraft
+        <TextReveal text="Temukan Alasan" />
+        <TextReveal
+          text="Mengapa"
+          className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent"
+        />
+        <TextReveal text="Orang-orang Menyukai ResuCraft" />
       </h2>
 
       <p className="pb-8 pt-4 text-xl text-muted-foreground">
-        Temukan pengalaman para pengguna ResuCraft di bawah ini!
+        <TextReveal text="Temukan pengalaman para pengguna ResuCraft di bawah ini!" />
       </p>
 
       <div className="mx-auto grid columns-2 space-y-4 sm:block md:grid-cols-2 lg:columns-3 lg:grid-cols-4 lg:gap-6 lg:space-y-6">
-        {testimonials.map(
-          ({ image, name, userName, comment }: TestimonialProps) => (
+        {testimonials.map(({ image, name, userName, comment }, index) => (
+          <Motion variants={fromBottom} custom={index} className="block">
             <Card
               key={userName}
               className="max-w-md overflow-hidden md:break-inside-avoid"
@@ -99,8 +95,8 @@ export const Testimonials = () => {
 
               <CardContent>{comment}</CardContent>
             </Card>
-          ),
-        )}
+          </Motion>
+        ))}
       </div>
     </section>
   );

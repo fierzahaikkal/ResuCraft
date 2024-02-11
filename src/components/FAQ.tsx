@@ -4,14 +4,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { TextReveal } from "./motion/TextReveal";
+import { Motion } from "./motion/Motion";
+import { opacityIn } from "@/lib/variants";
 
-interface FAQProps {
-  question: string;
-  answer: string;
-  value: string;
-}
-
-const FAQList: FAQProps[] = [
+const FAQList = [
   {
     question: "Apakah ResuCraft tersedia secara gratis?",
     answer: "Ya, ResuCraft adalah sebuah aplikasi gratis.",
@@ -41,37 +38,42 @@ const FAQList: FAQProps[] = [
       "Untuk bantuan teknis, Anda dapat menghubungi tim dukungan pelanggan kami melalui email atau obrolan langsung di aplikasi.",
     value: "item-5",
   },
-];
+] as const;
 
 export const FAQ = () => {
   return (
     <section id="faq" className="container py-24 sm:py-32">
       <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-        Pertanyaan yang Sering Diajukan{" "}
-        <span className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent">
-          (FAQ)
-        </span>
+        <TextReveal text="Pertanyaan yang Sering Diajukan" />
+        <TextReveal
+          text="(FAQ)"
+          className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent"
+        />
       </h2>
 
       <Accordion type="single" collapsible className="AccordionRoot w-full">
-        {FAQList.map(({ question, answer, value }: FAQProps) => (
-          <AccordionItem key={value} value={value}>
-            <AccordionTrigger className="text-left">
-              {question}
-            </AccordionTrigger>
-
-            <AccordionContent>{answer}</AccordionContent>
-          </AccordionItem>
+        {FAQList.map(({ question, answer, value }, index) => (
+          <Motion variants={opacityIn} custom={index}>
+            <AccordionItem key={value} value={value}>
+              <AccordionTrigger className="text-left">
+                <TextReveal text={question} />
+              </AccordionTrigger>
+              <AccordionContent>
+                {" "}
+                <TextReveal text={answer} />
+              </AccordionContent>
+            </AccordionItem>
+          </Motion>
         ))}
       </Accordion>
 
       <h3 className="mt-4 font-medium">
-        Masih memiliki pertanyaan?{" "}
+        <TextReveal text="Masih memiliki pertanyaan?" />
         <a
           href="#"
           className="border-primary text-primary transition-all hover:border-b-2"
         >
-          Hubungi kami
+          <TextReveal text="Hubungi kami" />
         </a>
       </h3>
     </section>

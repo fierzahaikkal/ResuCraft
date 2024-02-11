@@ -52,7 +52,10 @@ export const Footer = () => {
 
       <section className="container pb-14 text-center">
         <h3>
-          &copy; 2024 ResuCraft made with ❤️{" "}
+          &copy; 2024 ResuCraft made with{" "}
+          <span className="relative">
+            ❤️<span className="absolute left-0 animate-ping">❤️</span>
+          </span>{" "}
           <a
             target="_blank"
             href="#"
