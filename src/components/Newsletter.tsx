@@ -1,4 +1,4 @@
-import { fromBottom, fromLeft, opacityIn } from "@/lib/variants";
+import { opacityIn } from "@/lib/variants";
 import { Motion } from "./motion/Motion";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";

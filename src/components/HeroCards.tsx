@@ -12,7 +12,7 @@ import {
 import { Check } from "lucide-react";
 import { LightBulbIcon } from "./Icons";
 import { Motion } from "./motion/Motion";
-import { fromBottom, fromLeft, fromRight, fromTop } from "@/lib/variants";
+import { fromBottom, fromRight, fromTop } from "@/lib/variants";
 
 export const HeroCards = () => {
   return (

@@ -1,7 +1,7 @@
 import { Radar } from "lucide-react";
 import { TextReveal } from "./motion/TextReveal";
 import { Motion } from "./motion/Motion";
-import { fromBottom, fromLeft, opacityIn } from "@/lib/variants";
+import { opacityIn } from "@/lib/variants";
 
 const sponsors = [
   {
