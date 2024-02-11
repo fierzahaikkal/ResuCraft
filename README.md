@@ -1,59 +1,68 @@
-# Shadcn/UI Landing Page Template
+# ResuCraft: Free Resume Builder
 
-## <a href="https://ui.shadcn.com/" target="_blank">ShadcnUI</a> + <a href="https://react.dev/" target="_blank">React</a> + <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a> + <a href="https://tailwindcss.com/" target="_blank">Tailwind</a>.
-
-![shadch-landing-page](https://github.com/leoMirandaa/shadcn-landing-page/assets/61714687/3ba7b51f-9589-4541-800a-5ab7cecad1b5)
-
-Build your React landing page effortlessly with the required sections to your project. <a href="https://shadcn-landing-page.vercel.app/" target="_blank">Live Demo</a>
-
-## Sections
-
-- [x] Navbar
-- [x] Sidebar(mobile)
-- [x] Hero
-- [x] Sponsors
-- [x] About
-- [x] Stats
-- [x] How It Works
-- [x] Features
-- [x] Services
-- [x] Call-to-Action (CTA)
-- [x] Testimonials
-- [x] Team
-- [x] Pricing
-- [x] Newsletter
-- [x] Frequently Asked Questions(FAQ)
-- [x] Footer
+Welcome to the Resume Builder Application! This project is aimed at providing users with a simple and intuitive platform to create their resumes effortlessly. Built with React, TypeScript, Shadcn-UI, and Tailwind CSS, this application offers a seamless experience for crafting professional resumes without the hassle of signing in.
 
 ## Features
 
-- [x] Fully Responsive Design
-- [x] User Friendly Navigation
-- [x] Dark Mode
-- [x] Metatags
+- **Freely Build Resume**: Users can create their resumes without any constraints. The application provides various templates and customization options to tailor resumes according to individual preferences.
+- **Adaptive UI**: The user interface is designed to be responsive and adaptive, ensuring a consistent experience across different devices and screen sizes.
+- **No Sign-In Required**: Users can start building their resumes instantly without the need for any sign-in process. This enhances accessibility and convenience for users.
 
-## How to install
+## Tech Stack
 
-1. Clone this repositoy:
+- **React**: A popular JavaScript library for building user interfaces.
+- **TypeScript**: TypeScript adds static typing to JavaScript, enhancing code quality and developer productivity.
+- **Shadcn-UI**: A UI component library for React that offers a wide range of customizable components to streamline the development process.
+- **Tailwind CSS**: A utility-first CSS framework that allows for rapid UI development by providing a set of pre-defined classes.
 
-```bash
-git clone https://github.com/leoMirandaa/shadcn-landing-page.git
-```
+## Getting Started
 
-2. Go into project
+To get started with the Resume Builder Application, follow these steps:
 
-```bash
-cd shadcn-landing-page
-```
+1. **Clone the Repository**: Clone this repository to your local machine using:
 
-3. Install dependencies
+   ```
+   git clone https://github.com/your-username/resume-builder.git
+   ```
 
-```bash
-npm install
-```
+2. **Install Dependencies**: Navigate to the project directory and install dependencies using npm or yarn:
 
-4. Run project
+   ```
+   cd resume-builder
+   npm install
+   ```
 
-```bash
-npm run dev
-```
+   or
+
+   ```
+   cd resume-builder
+   yarn install
+   ```
+
+3. **Run the Application**: Start the development server:
+
+   ```
+   npm start
+   ```
+
+   or
+
+   ```
+   yarn start
+   ```
+
+4. **Access the Application**: Once the development server is up and running, you can access the application in your web browser at `http://localhost:3000`.
+
+## Contributing
+
+Contributions to the Resume Builder Application are welcome! If you have any suggestions, feature requests, or bug reports, feel free to open an issue or submit a pull request.
+
+Also if you interest for landing page, please visit [https://github.com/leoMirandaa](Leo Miranda) thank you
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+Happy Resume Building! 🚀📄
