@@ -34,9 +34,9 @@ const sponsors: SponsorProps[] = [
 
 export const Sponsors = () => {
   return (
-    <section id="sponsors" className="container pt-24 sm:py-32">
-      <h2 className="mb-8 font-bold text-center text-md lg:text-xl text-primary">
-        Telah Digunakan Oleh
+    <section id="sponsors" className="container">
+      <h2 className="text-md mb-8 text-center font-bold text-primary lg:text-xl">
+        Mitra yang mempercayai produk kami
       </h2>
 
       <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">

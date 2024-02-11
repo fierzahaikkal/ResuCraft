@@ -13,60 +13,49 @@ interface FAQProps {
 
 const FAQList: FAQProps[] = [
   {
-    question: "Is this template free?",
-    answer: "Yes. It is a free ChadcnUI template.",
+    question: "Apakah ResuCraft tersedia secara gratis?",
+    answer: "Ya, ResuCraft adalah sebuah aplikasi gratis.",
     value: "item-1",
   },
   {
-    question: "Lorem ipsum dolor sit amet consectetur adipisicing elit?",
+    question: "Bagaimana cara menggunakan ResuCraft?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam? Consectetur sapiente iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+      "ResuCraft sangat mudah digunakan. Anda cukup mendaftar, lalu mulai membuat resume Anda dengan mengikuti panduan yang disediakan.",
     value: "item-2",
   },
   {
     question:
-      "Lorem ipsum dolor sit amet  Consectetur natus dolores minus quibusdam?",
+      "Apakah saya perlu membayar untuk mendapatkan fitur tambahan di ResuCraft?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore qui nostrum reiciendis veritatis necessitatibus maxime quis ipsa vitae cumque quo?",
+      "Tidak, ResuCraft menawarkan semua fitur secara gratis. Namun, kami juga memiliki opsi berlangganan untuk akses ke fitur-fitur premium.",
     value: "item-3",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipisicing elit?",
-    answer: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    question: "Apakah ResuCraft memiliki dukungan pelanggan?",
+    answer: "Ya, kami memiliki tim dukungan pelanggan yang siap membantu Anda.",
     value: "item-4",
   },
   {
-    question:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur natus?",
+    question: "Bagaimana cara mendapatkan bantuan teknis untuk ResuCraft?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam? Consectetur sapiente iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+      "Untuk bantuan teknis, Anda dapat menghubungi tim dukungan pelanggan kami melalui email atau obrolan langsung di aplikasi.",
     value: "item-5",
   },
 ];
 
 export const FAQ = () => {
   return (
-    <section
-      id="faq"
-      className="container py-24 sm:py-32"
-    >
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">
-        Frequently Asked{" "}
-        <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-          Questions
+    <section id="faq" className="container py-24 sm:py-32">
+      <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+        Pertanyaan yang Sering Diajukan{" "}
+        <span className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent">
+          (FAQ)
         </span>
       </h2>
 
-      <Accordion
-        type="single"
-        collapsible
-        className="w-full AccordionRoot"
-      >
+      <Accordion type="single" collapsible className="AccordionRoot w-full">
         {FAQList.map(({ question, answer, value }: FAQProps) => (
-          <AccordionItem
-            key={value}
-            value={value}
-          >
+          <AccordionItem key={value} value={value}>
             <AccordionTrigger className="text-left">
               {question}
             </AccordionTrigger>
@@ -76,13 +65,13 @@ export const FAQ = () => {
         ))}
       </Accordion>
 
-      <h3 className="font-medium mt-4">
-        Still have questions?{" "}
+      <h3 className="mt-4 font-medium">
+        Masih memiliki pertanyaan?{" "}
         <a
           href="#"
-          className="text-primary transition-all border-primary hover:border-b-2"
+          className="border-primary text-primary transition-all hover:border-b-2"
         >
-          Contact us
+          Hubungi kami
         </a>
       </h3>
     </section>

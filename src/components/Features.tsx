@@ -1,4 +1,3 @@
-import { Badge } from "./ui/badge";
 import {
   Card,
   CardContent,
@@ -20,54 +19,32 @@ const features: FeatureProps[] = [
   {
     title: "Responsive Design",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.",
+      "Membuat desain yang responsif memungkinkan aplikasi Anda untuk menyesuaikan tampilannya dengan berbagai perangkat, mulai dari desktop hingga ponsel pintar.",
     image: responsive,
   },
   {
     title: "Intuitive user interface",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.",
+      "Antarmuka pengguna yang intuitif membantu pengguna untuk dengan mudah berinteraksi dengan aplikasi Anda tanpa mengalami kebingungan atau kesulitan.",
     image: intuitive,
   },
   {
-    title: "AI-Powered insights",
+    title: "Light & Dark mode",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nesciunt est nostrum omnis ab sapiente.",
+      "Mode terang dan gelap memberikan fleksibilitas kepada pengguna untuk memilih tampilan yang sesuai dengan preferensi mereka atau kondisi pencahayaan.",
     image: ai,
   },
 ];
 
-const featureList: string[] = [
-  "Dark/Light theme",
-  "Reviews",
-  "Features",
-  "Pricing",
-  "Contact form",
-  "Our team",
-  "Responsive design",
-  "Newsletter",
-  "Minimalist",
-];
-
 export const Features = () => {
   return (
-    <section id="features" className="container py-24 space-y-8 sm:py-32">
-      <h2 className="text-3xl font-bold lg:text-4xl md:text-center">
-        Many{" "}
-        <span className="text-transparent bg-gradient-to-b from-primary/60 to-primary bg-clip-text">
-          Great Features
+    <section id="features" className="container space-y-8 py-24 sm:py-32">
+      <h2 className="text-3xl font-bold md:text-center lg:text-4xl">
+        Banyak{" "}
+        <span className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent">
+          Fitur Menarik
         </span>
       </h2>
-
-      <div className="flex flex-wrap gap-4 md:justify-center">
-        {featureList.map((feature: string) => (
-          <div key={feature}>
-            <Badge variant="secondary" className="text-sm">
-              {feature}
-            </Badge>
-          </div>
-        ))}
-      </div>
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {features.map(({ title, description, image }: FeatureProps) => (
@@ -82,7 +59,7 @@ export const Features = () => {
               <img
                 src={image}
                 alt="About feature"
-                className="w-[200px] lg:w-[300px] mx-auto"
+                className="mx-auto w-[200px] lg:w-[300px]"
               />
             </CardFooter>
           </Card>

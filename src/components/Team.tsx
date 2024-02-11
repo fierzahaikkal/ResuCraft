@@ -9,24 +9,13 @@ import {
 } from "@/components/ui/card";
 import { Github, Linkedin } from "lucide-react";
 
-interface TeamProps {
-  imageUrl: string;
-  name: string;
-  position: string;
-  socialNetworks: SociaNetworkslProps[];
-}
-
-interface SociaNetworkslProps {
-  name: string;
-  url: string;
-}
-
-const teamList: TeamProps[] = [
+const teamList = [
   {
     imageUrl:
       "https://media.licdn.com/dms/image/D5603AQEljt1TTN_XTA/profile-displayphoto-shrink_800_800/0/1698132288654?e=1712793600&v=beta&t=tiTGvhKlfdWZViML6SrTt_Oc8BEXNnHFBzzPDrbq3fI",
     name: "Rafli Satya Dewanto",
     position: "Developer",
+    description: "Intern Tech Dev Frontend @ Erajaya",
     socialNetworks: [
       { name: "Linkedin", url: "https://www.linkedin.com/in/rd09/" },
       {
@@ -40,6 +29,7 @@ const teamList: TeamProps[] = [
       "https://media.licdn.com/dms/image/D5603AQGrCNooaWVTbQ/profile-displayphoto-shrink_800_800/0/1707481175947?e=1712793600&v=beta&t=7yp7uNkkJfeJ1hOOloC4PSWmFmzX7Q-PrfMDupokfuo",
     name: "Mikael Agung",
     position: "Developer",
+    description: "Student at University Of Gunadarma | Front-End Developer",
     socialNetworks: [
       { name: "Linkedin", url: "https://www.linkedin.com/in/mikaelagung/" },
       {
@@ -53,6 +43,8 @@ const teamList: TeamProps[] = [
       "https://media.licdn.com/dms/image/D5603AQHfALP8yqQtmA/profile-displayphoto-shrink_800_800/0/1697986658258?e=1712793600&v=beta&t=RXkRcsql5qQbFa3aEj0CsgLaApU-49SzoIOGEnCrReE",
     name: "Fierza Heikkal",
     position: "Developer",
+    description:
+      "CS Student at Gunadarma University | Head of Neotic.id | Fullstack Web Developer",
     socialNetworks: [
       { name: "Linkedin", url: "https://www.linkedin.com/in/fierzahaikkal/" },
       {
@@ -61,7 +53,7 @@ const teamList: TeamProps[] = [
       },
     ],
   },
-];
+] as const;
 
 export const Team = () => {
   const socialIcon = (iconName: string) => {
@@ -75,31 +67,30 @@ export const Team = () => {
   };
 
   return (
-    <section id="team" className="container py-24 sm:py-32">
+    <section id="team" className="container py-10">
       <h2 className="text-3xl font-bold md:text-4xl">
-        <span className="text-transparent bg-gradient-to-b from-primary/60 to-primary bg-clip-text">
-          Our Dedicated{" "}
+        <span className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent">
+          Tim padi yang{" "}
         </span>
-        Crew
+        berdedikasi
       </h2>
 
-      <p className="mt-4 mb-10 text-xl text-muted-foreground">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
-        dolor pariatur sit!
+      <p className="mb-10 mt-4 text-xl text-muted-foreground">
+        Dikembangkan oleh para ilmu padi yang kebakaran 🧯💨🌾🔥
       </p>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 gap-y-10">
+      <div className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
         {teamList.map(
-          ({ imageUrl, name, position, socialNetworks }: TeamProps) => (
+          ({ imageUrl, name, position, socialNetworks, description }) => (
             <Card
               key={name}
-              className="relative flex flex-col items-center justify-center mt-8 bg-muted/50"
+              className="relative mt-8 flex flex-col items-center justify-center bg-muted/50"
             >
-              <CardHeader className="flex items-center justify-center pb-2 mt-8">
+              <CardHeader className="mt-8 flex items-center justify-center pb-2">
                 <img
                   src={imageUrl}
                   alt={`${name} ${position}`}
-                  className="absolute object-cover w-24 h-24 rounded-full -top-12 aspect-square"
+                  className="absolute -top-12 aspect-square h-24 w-24 rounded-full object-cover"
                 />
                 <CardTitle className="text-center">{name}</CardTitle>
                 <CardDescription className="text-primary">
@@ -108,11 +99,11 @@ export const Team = () => {
               </CardHeader>
 
               <CardContent className="pb-2 text-center">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p>{description}</p>
               </CardContent>
 
               <CardFooter>
-                {socialNetworks.map(({ name, url }: SociaNetworkslProps) => (
+                {socialNetworks.map(({ name, url }) => (
                   <div key={name}>
                     <a
                       href={url}
@@ -129,7 +120,7 @@ export const Team = () => {
                 ))}
               </CardFooter>
             </Card>
-          )
+          ),
         )}
       </div>
     </section>

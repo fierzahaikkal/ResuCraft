@@ -10,56 +10,51 @@ interface FeatureProps {
 const features: FeatureProps[] = [
   {
     icon: <MedalIcon />,
-    title: "Accesibility",
+    title: "Aksesibilitas",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "Bangun resume Anda dengan mudah dan cepat, di mana pun Anda berada. Dapatkan akses tanpa batas kapan saja.",
   },
   {
     icon: <MapIcon />,
-    title: "Community",
+    title: "Komunitas",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "Bergabunglah dengan komunitas kami yang ramah, berbagi pengalaman, dan mendapatkan masukan untuk meningkatkan resume Anda.",
   },
   {
     icon: <PlaneIcon />,
-    title: "Scalability",
+    title: "Skalabilitas",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "Resume Anda akan terlihat profesional dan rapi, tidak peduli seberapa besar atau kecilnya pekerjaan impian Anda.",
   },
   {
     icon: <GiftIcon />,
-    title: "Gamification",
+    title: "Gamifikasi",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "Kami memberikan pengalaman yang menyenangkan dalam membangun resume Anda, dengan hadiah dan penghargaan untuk pencapaian tertentu.",
   },
 ];
 
 export const HowItWorks = () => {
   return (
-    <section
-      id="howItWorks"
-      className="container text-center py-24 sm:py-32"
-    >
-      <h2 className="text-3xl md:text-4xl font-bold ">
-        How It{" "}
-        <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-          Works{" "}
+    <section id="howItWorks" className="container py-24 text-center sm:py-32">
+      <h2 className="text-3xl font-bold md:text-4xl ">
+        Bagaimana Cara{" "}
+        <span className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent">
+          Kerjanya?{" "}
         </span>
-        Step-by-Step Guide
+        <br />
+        Panduan Langkah-demi-Langkah
       </h2>
-      <p className="md:w-3/4 mx-auto mt-4 mb-8 text-xl text-muted-foreground">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
-        dolor pariatur sit!
+      <p className="mx-auto mb-8 mt-4 text-xl text-muted-foreground md:w-3/4">
+        Bangun resume Anda dengan mudah dan cepat menggunakan aplikasi kami.
+        Dapatkan pekerjaan impian Anda sekarang!
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
         {features.map(({ icon, title, description }: FeatureProps) => (
-          <Card
-            key={title}
-            className="bg-muted/50"
-          >
+          <Card key={title} className="bg-muted/50">
             <CardHeader>
-              <CardTitle className="grid gap-4 place-items-center">
+              <CardTitle className="grid place-items-center gap-4">
                 {icon}
                 {title}
               </CardTitle>

@@ -66,20 +66,19 @@ export const Testimonials = () => {
   return (
     <section id="testimonials" className="container py-24 sm:py-32">
       <h2 className="text-3xl font-bold md:text-4xl">
-        Discover Why
-        <span className="text-transparent bg-gradient-to-b from-primary/60 to-primary bg-clip-text">
+        Temukan Alasan
+        <span className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent">
           {" "}
-          People Love{" "}
+          Mengapa{" "}
         </span>
-        ResuCraft
+        Orang-orang Menyukai ResuCraft
       </h2>
 
-      <p className="pt-4 pb-8 text-xl text-muted-foreground">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non unde error
-        facere hic reiciendis illo
+      <p className="pb-8 pt-4 text-xl text-muted-foreground">
+        Temukan pengalaman para pengguna ResuCraft di bawah ini!
       </p>
 
-      <div className="grid mx-auto space-y-4 md:grid-cols-2 lg:grid-cols-4 sm:block columns-2 lg:columns-3 lg:gap-6 lg:space-y-6">
+      <div className="mx-auto grid columns-2 space-y-4 sm:block md:grid-cols-2 lg:columns-3 lg:grid-cols-4 lg:gap-6 lg:space-y-6">
         {testimonials.map(
           ({ image, name, userName, comment }: TestimonialProps) => (
             <Card
@@ -100,7 +99,7 @@ export const Testimonials = () => {
 
               <CardContent>{comment}</CardContent>
             </Card>
-          )
+          ),
         )}
       </div>
     </section>

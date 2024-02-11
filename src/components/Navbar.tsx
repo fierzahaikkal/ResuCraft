@@ -36,8 +36,8 @@ const routeList: RouteProps[] = [
     label: "Testimoni",
   },
   {
-    href: "#pricing",
-    label: "Harga",
+    href: "#team",
+    label: "Team",
   },
   {
     href: "#faq",
@@ -48,11 +48,11 @@ const routeList: RouteProps[] = [
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
+    <header className="sticky top-0 z-40 w-full border-b-[1px] bg-white dark:border-b-slate-700 dark:bg-background">
       <NavigationMenu className="mx-auto">
-        <NavigationMenuList className="container flex justify-between w-screen px-4 h-14 ">
+        <NavigationMenuList className="container flex h-14 w-screen justify-between px-4 ">
           <NavigationMenuItem className="flex font-bold">
-            <a href="/" className="flex ml-2 text-xl font-bold">
+            <a href="/" className="ml-2 flex text-xl font-bold">
               <LogoIcon />
               ResuCraft
             </a>
@@ -65,7 +65,7 @@ export const Navbar = () => {
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger className="px-2">
                 <Menu
-                  className="flex w-5 h-5 md:hidden"
+                  className="flex h-5 w-5 md:hidden"
                   onClick={() => setIsOpen(true)}
                 >
                   <span className="sr-only">Menu Icon</span>
@@ -78,7 +78,7 @@ export const Navbar = () => {
                     ResuCraft
                   </SheetTitle>
                 </SheetHeader>
-                <nav className="flex flex-col items-center justify-center gap-2 mt-4">
+                <nav className="mt-4 flex flex-col items-center justify-center gap-2">
                   {routeList.map(({ href, label }: RouteProps) => (
                     <a
                       key={label}

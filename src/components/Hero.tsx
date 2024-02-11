@@ -1,21 +1,20 @@
 import { Button } from "./ui/button";
-import { buttonVariants } from "./ui/button";
 import { HeroCards } from "./HeroCards";
 
 export const Hero = () => {
   return (
-    <section className="container grid gap-10 py-20 lg:grid-cols-2 place-items-center md:py-32">
+    <section className="container grid place-items-center gap-10 py-20 md:py-32 lg:grid-cols-2">
       <div className="space-y-6 text-center lg:text-start">
         <main className="text-5xl font-bold md:text-6xl">
           <h1 className="inline">
-            <span className="inline bg-gradient-to-r from-[#F596D3]  to-[#D247BF] text-transparent bg-clip-text">
+            <span className="inline bg-gradient-to-r from-[#F596D3]  to-[#D247BF] bg-clip-text text-transparent">
               ResuCraft
             </span>{" "}
             Master
           </h1>{" "}
           Your{" "}
           <h2 className="inline">
-            <span className="inline bg-gradient-to-r from-[#61DAFB] via-[#1fc0f1] to-[#03a3d7] text-transparent bg-clip-text">
+            <span className="inline bg-gradient-to-r from-[#61DAFB] via-[#1fc0f1] to-[#03a3d7] bg-clip-text text-transparent">
               Career
             </span>{" "}
             Narrative
@@ -26,7 +25,7 @@ export const Hero = () => {
           Achieve Your Goals with Our Intuitive Resume Tool!"
         </p>
 
-        <div className="space-y-4 md:space-y-0 md:space-x-4">
+        <div className="space-y-4 md:space-x-4 md:space-y-0">
           <Button className="w-full md:w-1/3">Buat CV mu sekarang!</Button>
         </div>
       </div>
