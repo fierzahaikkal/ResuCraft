@@ -22,27 +22,27 @@ To get started with the Resume Builder Application, follow these steps:
 1. **Clone the Repository**: Clone this repository to your local machine using:
 
    ```
-   git clone https://github.com/your-username/resume-builder.git
+   git clone https://github.com/fierzahaikkal/ResuCraft
    ```
 
 2. **Install Dependencies**: Navigate to the project directory and install dependencies using npm or yarn:
 
    ```
-   cd resume-builder
+   cd ResuCraft
    npm install
    ```
 
    or
 
    ```
-   cd resume-builder
+   cd ResuCraft
    yarn install
    ```
 
 3. **Run the Application**: Start the development server:
 
    ```
-   npm start
+   npm run dev
    ```
 
    or
