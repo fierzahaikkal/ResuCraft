@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { Toast } from "@/components/ui/toast";
 import {
   Document,
   Page,
@@ -20,8 +21,12 @@ import {
   PDFViewer,
   renderToStream,
 } from "@react-pdf/renderer";
-import { useState } from "react";
+import React, { useState } from "react";
 import type { Education, Resume, WorkExperience } from "@/utils/resume-type";
+
+import { formSchema } from "@/utils/FormSchema";
+import { toast } from "@/components/ui/use-toast";
+import { z } from "zod";
 
 export default function ResumePage() {
   const [name, setName] = useState("");
@@ -34,8 +39,63 @@ export default function ResumePage() {
   const [skills, setSkills] = useState<string[]>([]);
   const [projects, setProjects] = useState<string[]>([]);
 
-  const handleSubmit = () => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //   const { name, value } = e.target;
+    //   switch (name) {
+    //     case "name":
+    //       setName(value);
+    //       break;
+    //     case "email":
+    //       setEmail(value);
+    //       break;
+    //     case "phone":
+    //       setPhone(value);
+    //       break;
+    //     case "address":
+    //       setAddress(value);
+    //       break;
+    //     case "summary":
+    //       setSummary(value);
+    //       break;
+    //     default:
+    //       break;
+    //   }
+  };
+
+  const handleSubmit = (values: z.infer<typeof formSchema>) => {
     // TODO create resume
+    try {
+      formSchema.parse({
+        name,
+        email,
+        phone,
+        address,
+        summary,
+        education: {
+          institution: "Example Institution",
+          degree: "Example Degree",
+          fieldOfStudy: "Example Field",
+          graduationYear: "2022",
+        },
+        experience: {
+          company: "Example Company",
+          title: "Example Title",
+          startDate: "2020-01-01",
+          endDate: "2021-01-01",
+          description: "Example Description",
+        },
+        skills,
+        projects,
+      });
+      console.log(values);
+    } catch (error) {
+      // Form data is invalid, handle error
+      console.error("Form data is invalid:", error);
+      toast({
+        title: "Validation Error",
+        description: "Please fill out all required fields correctly.",
+      });
+    }
   };
 
   return (
@@ -54,7 +114,7 @@ export default function ResumePage() {
                 <Label htmlFor="name">Name</Label>
                 <Input
                   id="name"
-                  placeholder="Enter your name"
+                  placeholder="John Doe"
                   required
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -63,7 +123,7 @@ export default function ResumePage() {
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
-                  placeholder="Enter your email"
+                  placeholder="johndoe@example.com"
                   required
                   type="email"
                   onChange={(e) => setEmail(e.target.value)}
@@ -73,7 +133,7 @@ export default function ResumePage() {
                 <Label htmlFor="phone">Phone Number</Label>
                 <Input
                   id="phone"
-                  placeholder="Enter your phone number"
+                  placeholder="+6212345678910"
                   required
                   type="tel"
                   onChange={(e) => setPhone(e.target.value)}
