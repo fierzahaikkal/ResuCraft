@@ -9,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/use-toast";
+// import { toast } from "@/components/ui/use-toast";
 import {
   Form,
   FormControl,
@@ -29,12 +29,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ToastAction } from "@/components/ui/toast";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function ResumePage() {
   const formData = useForm<validationSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      paper: "A4",
       name: "",
       email: "",
       phone: "",
@@ -63,25 +64,18 @@ export default function ResumePage() {
   const onSubmit = (data: validationSchemaType) => {
     try {
       // TODO create resume
-      toast({
-        title: "Kamu telah berhasil submit CV, dan sedang dibuat",
-        description: "Harap tunggu sebentar",
-      });
+      toast.success("Form berhasil di submit");
       console.log({ data });
     } catch (error) {
       // Form data is invalid, handle error
+      toast.success("Form gagal di submit");
       console.error("Form data is invalid:", error);
-      toast({
-        variant: "destructive",
-        title: "Validation Error",
-        description: "Harap isi semua field secara lengkap.",
-        action: <ToastAction altText="Try again">Coba lagi</ToastAction>,
-      });
     }
   };
 
   return (
     <main className="mx-auto my-8 min-h-screen w-full max-w-screen-md">
+      <Toaster />
       <Card className="w-full max-w-3xl px-6">
         <CardHeader>
           <CardTitle>Resume Builder</CardTitle>
@@ -95,7 +89,7 @@ export default function ResumePage() {
               onSubmit={formData.handleSubmit(onSubmit)}
               className="grid gap-6"
             >
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="gap-4 sm:grid-cols-2">
                 <FormField
                   control={formData.control}
                   name="paper"
