@@ -1,99 +1,57 @@
+"use client";
 import {
   CardTitle,
   CardDescription,
   CardHeader,
   CardContent,
-  CardFooter,
   Card,
 } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Toast } from "@/components/ui/toast";
-import {
-  Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
-  PDFViewer,
-  renderToStream,
-} from "@react-pdf/renderer";
-import React, { useState } from "react";
-import type { Education, Resume, WorkExperience } from "@/utils/resume-type";
-
-import { formSchema } from "@/utils/FormSchema";
 import { toast } from "@/components/ui/use-toast";
-import { z } from "zod";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { formSchema, validationSchemaType } from "@/utils/FormSchema";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { ToastAction } from "@/components/ui/toast";
 
 export default function ResumePage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [summary, setSummary] = useState("");
-  const [education, setEducation] = useState<Education>();
-  const [experience, setExperience] = useState<WorkExperience>();
-  const [skills, setSkills] = useState<string[]>([]);
-  const [projects, setProjects] = useState<string[]>([]);
+  const formData = useForm<validationSchemaType>({
+    resolver: zodResolver(formSchema),
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //   const { name, value } = e.target;
-    //   switch (name) {
-    //     case "name":
-    //       setName(value);
-    //       break;
-    //     case "email":
-    //       setEmail(value);
-    //       break;
-    //     case "phone":
-    //       setPhone(value);
-    //       break;
-    //     case "address":
-    //       setAddress(value);
-    //       break;
-    //     case "summary":
-    //       setSummary(value);
-    //       break;
-    //     default:
-    //       break;
-    //   }
-  };
-
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    // TODO create resume
+  const onSubmit = (data: validationSchemaType) => {
     try {
-      formSchema.parse({
-        name,
-        email,
-        phone,
-        address,
-        summary,
-        education: {
-          institution: "Example Institution",
-          degree: "Example Degree",
-          fieldOfStudy: "Example Field",
-          graduationYear: "2022",
-        },
-        experience: {
-          company: "Example Company",
-          title: "Example Title",
-          startDate: "2020-01-01",
-          endDate: "2021-01-01",
-          description: "Example Description",
-        },
-        skills,
-        projects,
+      // TODO create resume
+      toast({
+        title: "Kamu telah berhasil submit CV, dan sedang dibuat",
+        description: "Harap tunggu sebentar",
       });
-      console.log(values);
+      console.log(data);
     } catch (error) {
       // Form data is invalid, handle error
       console.error("Form data is invalid:", error);
       toast({
+        variant: "destructive",
         title: "Validation Error",
-        description: "Please fill out all required fields correctly.",
+        description: "Harap isi semua field secara lengkap.",
+        action: <ToastAction altText="Try again">Coba lagi</ToastAction>,
       });
     }
   };
@@ -108,173 +66,367 @@ export default function ResumePage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-6">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  placeholder="John Doe"
-                  required
-                  onChange={(e) => setName(e.target.value)}
+          <Form {...formData}>
+            <form
+              onSubmit={formData.handleSubmit(onSubmit)}
+              className="grid gap-6"
+            >
+              <div className="grid gap-4 sm:grid-cols-2">
+                <FormField
+                  control={formData.control}
+                  name="paper"
+                  render={({ field }) => (
+                    <FormItem className="col-span-2 space-y-2">
+                      <FormLabel>Ukuran kertas</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Harap pilih jenis kertas" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="A4">A4</SelectItem>
+                          <SelectItem value="Letter">Letter</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  placeholder="johndoe@example.com"
-                  required
-                  type="email"
-                  onChange={(e) => setEmail(e.target.value)}
+                <FormField
+                  control={formData.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel>Full Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="John Doe" {...field} required />
+                      </FormControl>
+                      <FormDescription>
+                        Harap isi dengan nama lengkap.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number</Label>
-                <Input
-                  id="phone"
-                  placeholder="+6212345678910"
-                  required
-                  type="tel"
-                  onChange={(e) => setPhone(e.target.value)}
+                <FormField
+                  control={formData.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Email" {...field} required />
+                      </FormControl>
+                      <FormDescription>Gunakan email utamamu.</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="address">Address</Label>
-                <Input
-                  id="address"
-                  placeholder="Enter your address"
-                  required
-                  onChange={(e) => setAddress(e.target.value)}
+                <FormField
+                  control={formData.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="+621234567890"
+                          {...field}
+                          type="tel"
+                          required
+                        />
+                      </FormControl>
+                      <FormDescription>
+                        Pastikan pakai nomor aktif.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="summary">Summary</Label>
-              <Textarea
-                className="min-h-[100px]"
-                id="summary"
-                placeholder="Enter your summary"
-                required
-                onChange={(e) => setSummary(e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <fieldset>
-                <legend className="mb-2 text-lg font-medium">
-                  Education History
-                </legend>
-                <div className="grid gap-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="institution1">Institution</Label>
-                    <Input
-                      id="institution1"
-                      placeholder="Enter institution"
-                      required
+                <FormField
+                  control={formData.control}
+                  name="address"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Address</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter your addres"
+                          {...field}
+                          required
+                        />
+                      </FormControl>
+                      <FormDescription>Tuliskan email utamamu.</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={formData.control}
+                  name="summary"
+                  render={({ field }) => (
+                    <FormItem className="col-span-2">
+                      <FormLabel>Ringkasan</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          className="min-h-[100px]"
+                          required
+                          placeholder="Masukkan Ringkasan dirimu"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormDescription>
+                        Harap isi mengenai dirimu secara singkat.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                {/* Education History */}
+                <div className="col-span-1 sm:col-span-2">
+                  <legend className="mb-2 text-lg font-medium">
+                    Education History
+                  </legend>
+                  <div className="grid gap-2 sm:grid-cols-3">
+                    <FormField
+                      control={formData.control}
+                      name="education.institution"
+                      render={({ field }) => (
+                        <FormItem className="sm:col-span-3">
+                          <FormLabel>Institution</FormLabel>
+                          <FormControl>
+                            <Input placeholder="" {...field} required />
+                          </FormControl>
+                          <FormDescription>
+                            Isi institusi terakhirmu.
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={formData.control}
+                      name="education.degree"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Degree</FormLabel>
+                          <FormControl>
+                            <Input placeholder="" {...field} required />
+                          </FormControl>
+                          <FormDescription>
+                            Isi gelar yang kamu raih.
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={formData.control}
+                      name="education.fieldOfStudy"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Field of study</FormLabel>
+                          <FormControl>
+                            <Input placeholder="" {...field} required />
+                          </FormControl>
+                          <FormDescription>
+                            Isi bidang institusimu.
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={formData.control}
+                      name="education.graduationYear"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Graduation year</FormLabel>
+                          <FormControl>
+                            <Input placeholder="" {...field} required />
+                          </FormControl>
+                          <FormDescription>
+                            Isi tahun kelulusanmu.
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
                   </div>
-                  <div className="grid gap-2 sm:grid-cols-3">
-                    <div className="space-y-2">
-                      <Label htmlFor="degree1">Degree</Label>
-                      <Input id="degree1" placeholder="Enter degree" required />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="field1">Field of Study</Label>
-                      <Input
-                        id="field1"
-                        placeholder="Enter field of study"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="graduation1">Graduation Year</Label>
-                      <Input
-                        id="graduation1"
-                        placeholder="Enter graduation year"
-                        required
-                      />
-                    </div>
-                  </div>
                 </div>
-              </fieldset>
-            </div>
-            <div className="space-y-2">
-              <fieldset>
-                <legend className="mb-2 text-lg font-medium">
-                  Work Experience
-                </legend>
-                <div className="grid gap-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="company1">Company</Label>
-                    <Input id="company1" placeholder="Enter company" required />
-                  </div>
+                {/* Work Experience */}
+                <div className="sm:col-span-2">
+                  <legend className="mb-2 text-lg font-medium">
+                    Work Experience
+                  </legend>
                   <div className="grid gap-2 sm:grid-cols-3">
-                    <div className="space-y-2">
-                      <Label htmlFor="title1">Job Title</Label>
-                      <Input id="title1" placeholder="Enter job title" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="start1">Start Date</Label>
-                      <Input
-                        id="start1"
-                        placeholder="Enter start date"
-                        type="date"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="end1">End Date</Label>
-                      <Input
-                        id="end1"
-                        placeholder="Enter end date"
-                        type="date"
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="description1">Description</Label>
-                    <Textarea
-                      className="min-h-[100px]"
-                      id="description1"
-                      placeholder="Enter description"
-                      required
+                    <FormField
+                      control={formData.control}
+                      name="experience.company"
+                      render={({ field }) => (
+                        <FormItem className="sm:col-span-3">
+                          <FormLabel>Company</FormLabel>
+                          <FormControl>
+                            <Input placeholder="" {...field} required />
+                          </FormControl>
+                          <FormDescription>
+                            Harap isi nama lengkap perusahaan.
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={formData.control}
+                      name="experience.title"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Job Title</FormLabel>
+                          <FormControl>
+                            <Input placeholder="" {...field} />
+                          </FormControl>
+                          <FormDescription>Isi pekerjaanmu.</FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={formData.control}
+                      name="experience.startDate"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Start Date</FormLabel>
+                          <FormControl>
+                            <Input placeholder="" {...field} type="date" />
+                          </FormControl>
+                          <FormDescription>
+                            Isi tanggal masukmu.
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={formData.control}
+                      name="experience.endDate"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>End Date</FormLabel>
+                          <FormControl>
+                            <Input placeholder="" {...field} type="date" />
+                          </FormControl>
+                          <FormDescription>
+                            Isi tanggal keluarmu.
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={formData.control}
+                      name="experience.description"
+                      render={({ field }) => (
+                        <FormItem className="sm:col-span-3">
+                          <FormLabel>Deskripsi</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              className="min-h-[100px]"
+                              required
+                              placeholder="Masukkan Ringkasan dirimu"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormDescription>
+                            Harap deskripsikan pengalamanmu secara lengkap.
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
                   </div>
                 </div>
-              </fieldset>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="skills">Skills</Label>
-              <Textarea
-                className="min-h-[100px]"
-                id="skills"
-                placeholder="Enter skills"
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="projects">Projects</Label>
-              <div className="grid gap-2">
-                <div className="space-y-2">
-                  <Label htmlFor="project1">Project 1</Label>
-                  <Input id="project1" placeholder="Enter project name" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="project2">Project 2</Label>
-                  <Input id="project2" placeholder="Enter project name" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="project3">Project 3</Label>
-                  <Input id="project3" placeholder="Enter project name" />
+                <FormField
+                  control={formData.control}
+                  name="skills"
+                  render={({ field }) => (
+                    <FormItem className="col-span-2">
+                      <FormLabel>Skills</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          className="min-h-[100px]"
+                          required
+                          placeholder="Masukkan Ringkasan dirimu"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormDescription>
+                        Harap isi skills yang kamu raih.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="sm:col-span-2">
+                  <FormField
+                    control={formData.control}
+                    name="project1"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Project 1</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Project 1" {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          Isi dengan projek pertamamu.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={formData.control}
+                    name="project2"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Project 2</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Project 2" {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          Isi dengan projek keduamu.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={formData.control}
+                    name="project3"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Project 3</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Project 3" {...field} />
+                        </FormControl>
+                        <FormDescription>
+                          Isi dengan projek ketigamu.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
               </div>
-            </div>
-          </div>
+              <Button type="submit" onClick={() => onSubmit}>
+                Buat CV!
+              </Button>
+            </form>
+          </Form>
         </CardContent>
-        <CardFooter>
-          <Button onClick={() => handleSubmit()} type="submit">
-            Submit
-          </Button>
-        </CardFooter>
       </Card>
     </main>
   );

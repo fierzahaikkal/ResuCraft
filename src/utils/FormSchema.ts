@@ -1,8 +1,7 @@
 import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 
 const formSchema = z.object({
+  paper: z.string(),
   name: z.string().min(1),
   email: z.string().email(),
   phone: z.string().min(1),
@@ -22,11 +21,11 @@ const formSchema = z.object({
     description: z.string().min(1),
   }),
   skills: z.string().min(1),
-  projects: z.array(z.string().min(1)),
+  project1: z.string().min(1),
+  project2: z.string().min(1),
+  project3: z.string().min(1),
 });
 
-export const formData = useForm<z.infer<typeof formSchema>>({
-  resolver: zodResolver(formSchema),
-});
+export type validationSchemaType = z.infer<typeof formSchema>;
 
 export { formSchema };
