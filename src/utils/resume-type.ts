@@ -1,4 +1,5 @@
 export type Resume = {
+  paper: string;
   name: string;
   email: string;
   phone: string;
@@ -7,7 +8,9 @@ export type Resume = {
   education: Education;
   experience: WorkExperience;
   skills: string[];
-  projects: string[];
+  project1: string;
+  project2: string;
+  project3: string;
 };
 
 export type Education = {

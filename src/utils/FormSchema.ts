@@ -20,7 +20,7 @@ const formSchema = z.object({
     endDate: z.string().min(1),
     description: z.string().min(1),
   }),
-  skills: z.string().min(1),
+  skills: z.string().min(3),
   project1: z.string().min(1),
   project2: z.string().min(1),
   project3: z.string().min(1),

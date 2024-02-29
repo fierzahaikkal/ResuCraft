@@ -1,4 +1,3 @@
-"use client";
 import {
   CardTitle,
   CardDescription,
@@ -9,7 +8,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-// import { toast } from "@/components/ui/use-toast";
 import {
   Form,
   FormControl,
@@ -22,6 +20,10 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema, validationSchemaType } from "@/utils/FormSchema";
+import toast, { Toaster } from "react-hot-toast";
+import { useAtom } from "jotai";
+import { resumeAtom } from "@/lib/atom";
+import { useNavigate } from "react-router-dom";
 import {
   Select,
   SelectContent,
@@ -29,9 +31,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import toast, { Toaster } from "react-hot-toast";
 
 export default function ResumePage() {
+  const [, setResume] = useAtom(resumeAtom);
+  const navigate = useNavigate();
   const formData = useForm<validationSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -63,7 +66,8 @@ export default function ResumePage() {
 
   const onSubmit = (data: validationSchemaType) => {
     try {
-      // TODO create resume
+      setResume(data);
+      navigate("/resume/preview");
       toast.success("Form berhasil di submit");
       console.log({ data });
     } catch (error) {
@@ -107,7 +111,8 @@ export default function ResumePage() {
                         </FormControl>
                         <SelectContent>
                           <SelectItem value="A4">A4</SelectItem>
-                          <SelectItem value="Letter">Letter</SelectItem>
+                          <SelectItem value="LETTER">Letter</SelectItem>
+                          <SelectItem value="LEGAL">Legal</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />

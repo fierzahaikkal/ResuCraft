@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import { NotFound } from "./components/NotFound.tsx";
 import ResumePage from "./pages/resume.tsx";
+import ExportPDF from "./pages/pdf.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path: "resume/preview",
-    element: <div>Resume Preview</div>,
+    element: <ExportPDF />,
   },
 ]);
 
