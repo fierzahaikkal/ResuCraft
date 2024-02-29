@@ -24,6 +24,13 @@ import toast, { Toaster } from "react-hot-toast";
 import { useAtom } from "jotai";
 import { resumeAtom } from "@/lib/atom";
 import { useNavigate } from "react-router-dom";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function ResumePage() {
   const [, setResume] = useAtom(resumeAtom);
@@ -31,6 +38,7 @@ export default function ResumePage() {
   const formData = useForm<validationSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      paper: "A4",
       name: "",
       email: "",
       phone: "",
@@ -86,6 +94,31 @@ export default function ResumePage() {
               className="grid gap-6"
             >
               <div className="gap-4 sm:grid-cols-2">
+                <FormField
+                  control={formData.control}
+                  name="paper"
+                  render={({ field }) => (
+                    <FormItem className="col-span-2 space-y-2">
+                      <FormLabel>Ukuran kertas</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Harap pilih jenis kertas" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="A4">A4</SelectItem>
+                          <SelectItem value="LETTER">Letter</SelectItem>
+                          <SelectItem value="LEGAL">Legal</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={formData.control}
                   name="name"

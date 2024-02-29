@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 const formSchema = z.object({
+  paper: z.string(),
   name: z.string().min(1),
   email: z.string().email(),
   phone: z.string().min(1),

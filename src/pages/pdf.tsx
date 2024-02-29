@@ -38,7 +38,7 @@ const ResumePDF = () => {
 
   return (
     <Document>
-      <Page size="A4" style={styles.page}>
+      <Page size={resume.paper} style={styles.page}>
         <Text
           style={{
             fontSize: 16,
@@ -156,7 +156,7 @@ const ResumePDF = () => {
 };
 
 const ExportPDF = () => (
-  <PDFViewer width={"100%"} height="1000">
+  <PDFViewer width={"100%"} height="10000">
     <ResumePDF />
   </PDFViewer>
 );

@@ -1,6 +1,7 @@
 import { atom } from "jotai";
 
 export const resumeAtom = atom({
+  paper: "LEGAL",
   name: "Gene Woods",
   email: "bo@feesilaz.tw",
   phone: "66432424",
