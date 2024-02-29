@@ -34,6 +34,30 @@ import { ToastAction } from "@/components/ui/toast";
 export default function ResumePage() {
   const formData = useForm<validationSchemaType>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      summary: "",
+      education: {
+        institution: "",
+        degree: "",
+        fieldOfStudy: "",
+        graduationYear: "",
+      },
+      experience: {
+        company: "",
+        title: "",
+        startDate: "",
+        endDate: "",
+        description: "",
+      },
+      skills: "",
+      project1: "",
+      project2: "",
+      project3: "",
+    },
   });
 
   const onSubmit = (data: validationSchemaType) => {
@@ -43,7 +67,7 @@ export default function ResumePage() {
         title: "Kamu telah berhasil submit CV, dan sedang dibuat",
         description: "Harap tunggu sebentar",
       });
-      console.log(data);
+      console.log({ data });
     } catch (error) {
       // Form data is invalid, handle error
       console.error("Form data is invalid:", error);
@@ -421,9 +445,7 @@ export default function ResumePage() {
                   />
                 </div>
               </div>
-              <Button type="submit" onClick={() => onSubmit}>
-                Buat CV!
-              </Button>
+              <Button type="submit">Buat CV!</Button>
             </form>
           </Form>
         </CardContent>
