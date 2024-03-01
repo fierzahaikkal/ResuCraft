@@ -24,7 +24,7 @@ interface RouteProps {
 
 const routeList: RouteProps[] = [
   {
-    href: "resume/create",
+    href: "/resume/create",
     label: "Buat CV",
   },
   {
@@ -85,7 +85,7 @@ export const Navbar = () => {
                       href={href}
                       onClick={() => setIsOpen(false)}
                       className={
-                        href == "resume/create"
+                        href == "/resume/create"
                           ? buttonVariants({ variant: "default" })
                           : buttonVariants({ variant: "ghost" })
                       }
