@@ -4,15 +4,15 @@ import { TextReveal } from "./motion/TextReveal";
 export const Statistics = () => {
   const stats = [
     {
-      quantity: 2700,
+      quantity: 10000,
       description: "Pengguna",
     },
     {
-      quantity: 87000,
+      quantity: 8700,
       description: "Pelanggan",
     },
     {
-      quantity: 50000,
+      quantity: 5000,
       description: "Downloads",
     },
     {

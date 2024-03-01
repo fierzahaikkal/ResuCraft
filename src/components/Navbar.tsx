@@ -24,7 +24,7 @@ interface RouteProps {
 
 const routeList: RouteProps[] = [
   {
-    href: "#buat",
+    href: "resume/create",
     label: "Buat CV",
   },
   {
