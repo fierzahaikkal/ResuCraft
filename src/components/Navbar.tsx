@@ -16,6 +16,7 @@ import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { LogoIcon } from "./Icons";
+import { Link } from "react-router-dom";
 
 interface RouteProps {
   href: string;
@@ -80,10 +81,9 @@ export const Navbar = () => {
                 </SheetHeader>
                 <nav className="mt-4 flex flex-col items-center justify-center gap-2">
                   {routeList.map(({ href, label }: RouteProps) => (
-                    <a
+                    <Link
                       key={label}
-                      href={href}
-                      onClick={() => setIsOpen(false)}
+                      to={href}
                       className={
                         href == "/resume/create"
                           ? buttonVariants({ variant: "default" })
@@ -91,7 +91,7 @@ export const Navbar = () => {
                       }
                     >
                       {label}
-                    </a>
+                    </Link>
                   ))}
                 </nav>
               </SheetContent>
@@ -101,8 +101,8 @@ export const Navbar = () => {
           {/* desktop */}
           <nav className="hidden gap-2 md:flex">
             {routeList.map((route: RouteProps, i) => (
-              <a
-                href={route.href}
+              <Link
+                to={route.href}
                 key={i}
                 className={
                   i == 0
@@ -115,7 +115,7 @@ export const Navbar = () => {
                 }
               >
                 {route.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
