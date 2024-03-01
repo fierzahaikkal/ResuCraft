@@ -85,7 +85,7 @@ export const Navbar = () => {
                       href={href}
                       onClick={() => setIsOpen(false)}
                       className={
-                        href == "#buat"
+                        href == "resume/create"
                           ? buttonVariants({ variant: "default" })
                           : buttonVariants({ variant: "ghost" })
                       }
