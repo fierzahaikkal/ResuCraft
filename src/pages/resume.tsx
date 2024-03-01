@@ -69,7 +69,6 @@ export default function ResumePage() {
       setResume(data);
       navigate("/resume/preview");
       toast.success("Form berhasil di submit");
-      console.log({ data });
     } catch (error) {
       // Form data is invalid, handle error
       toast.success("Form gagal di submit");

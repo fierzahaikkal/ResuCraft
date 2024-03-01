@@ -3,8 +3,11 @@ import { HeroCards } from "./HeroCards";
 import { TextReveal } from "./motion/TextReveal";
 import { Motion } from "./motion/Motion";
 import { opacityIn } from "@/lib/variants";
+import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="container grid place-items-center gap-10 overflow-hidden py-20 md:py-32 lg:grid-cols-2">
       <div className="space-y-6 text-center lg:text-start">
@@ -32,7 +35,12 @@ export const Hero = () => {
 
         <div className="space-y-4 md:space-x-4 md:space-y-0">
           <Motion variants={opacityIn}>
-            <Button className="w-full md:w-1/3">Buat CV mu sekarang!</Button>
+            <Button
+              onClick={() => navigate("/resume/create")}
+              className="w-full md:w-1/3"
+            >
+              Buat CV mu sekarang!
+            </Button>
           </Motion>
         </div>
       </div>

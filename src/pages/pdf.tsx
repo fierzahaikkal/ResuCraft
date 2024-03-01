@@ -38,6 +38,7 @@ const ResumePDF = () => {
 
   return (
     <Document>
+      {/* @ts-expect-error react-pdf types error */}
       <Page size={resume.paper} style={styles.page}>
         <Text
           style={{
