@@ -3,7 +3,7 @@ const convertQuantity = (num: number) => {
   if (num < 1000) {
     return quantity;
   }
-  let unit = [
+  const unit = [
     { value: 1e3, suffix: "K+" },
     { value: 1e6, suffix: "M+" },
     { value: 1e9, suffix: "B+" },

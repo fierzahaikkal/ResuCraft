@@ -16,7 +16,6 @@ import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { LogoIcon } from "./Icons";
-import { Link } from "react-router-dom";
 
 interface RouteProps {
   href: string;
