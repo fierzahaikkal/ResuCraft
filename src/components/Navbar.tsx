@@ -81,9 +81,9 @@ export const Navbar = () => {
                 </SheetHeader>
                 <nav className="mt-4 flex flex-col items-center justify-center gap-2">
                   {routeList.map(({ href, label }: RouteProps) => (
-                    <Link
+                    <a
                       key={label}
-                      to={href}
+                      href={href}
                       className={
                         href == "/resume/create"
                           ? buttonVariants({ variant: "default" })
@@ -91,7 +91,7 @@ export const Navbar = () => {
                       }
                     >
                       {label}
-                    </Link>
+                    </a>
                   ))}
                 </nav>
               </SheetContent>
@@ -101,8 +101,8 @@ export const Navbar = () => {
           {/* desktop */}
           <nav className="hidden gap-2 md:flex">
             {routeList.map((route: RouteProps, i) => (
-              <Link
-                to={route.href}
+              <a
+                href={route.href}
                 key={i}
                 className={
                   i == 0
@@ -115,7 +115,7 @@ export const Navbar = () => {
                 }
               >
                 {route.label}
-              </Link>
+              </a>
             ))}
           </nav>
 
