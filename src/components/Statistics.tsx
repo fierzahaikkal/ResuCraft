@@ -1,5 +1,4 @@
 import Counter from "./motion/Counter";
-import { TextReveal } from "./motion/TextReveal";
 
 export const Statistics = () => {
   const stats = [
@@ -29,9 +28,7 @@ export const Statistics = () => {
             <h2 className="text-3xl font-bold sm:text-4xl ">
               <Counter value={quantity} />
             </h2>
-            <p className="text-xl text-muted-foreground">
-              <TextReveal text={description} />
-            </p>
+            <p className="text-xl text-muted-foreground">{description}</p>
           </div>
         ))}
       </div>

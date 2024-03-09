@@ -8,9 +8,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Github, Linkedin } from "lucide-react";
-import { TextReveal } from "./motion/TextReveal";
 import { Motion } from "./motion/Motion";
-import { fromBottom, opacityIn } from "@/lib/variants";
+import { fromBottom } from "@/lib/variants";
 
 const teamList = [
   {
@@ -72,21 +71,17 @@ export const Team = () => {
   return (
     <section id="team" className="container py-10">
       <h2 className="text-3xl font-bold md:text-4xl">
-        <TextReveal
-          text="Tim padi yang"
-          className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent"
-        />
-        <TextReveal text="berdedikasi" />
+        <span className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent">
+          Tim padi yang{" "}
+        </span>
+        <span>berdedikasi</span>
       </h2>
 
       <p className="mb-10 mt-4 text-xl text-muted-foreground">
-        <TextReveal text="Dikembangkan oleh para ilmu padi yang kebakaran" />
-        <Motion variants={opacityIn}>
-          🧯💨🌾
-          <span className="relative">
-            🔥<span className="absolute left-0 animate-ping">🔥</span>
-          </span>
-        </Motion>
+        Dikembangkan oleh para ilmu padi yang kebakaran 🧯💨🌾
+        <span className="relative">
+          🔥<span className="absolute left-0 animate-ping">🔥</span>
+        </span>
       </p>
 
       <div className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
