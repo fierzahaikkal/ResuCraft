@@ -31,6 +31,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
   },
+  divider: {
+    width: "100%",
+    borderBottom: "1px solid black",
+    marginBottom: "5px",
+  },
 });
 
 const ResumePDF = () => {
@@ -42,7 +47,7 @@ const ResumePDF = () => {
       <Page size={resume.paper} style={styles.page}>
         <Text
           style={{
-            fontSize: 16,
+            fontSize: 32,
             marginBottom: 5,
           }}
         >
@@ -59,6 +64,7 @@ const ResumePDF = () => {
         {/* Summary */}
         <View style={styles.section}>
           <Text style={styles.heading}>Summary</Text>
+          <View style={styles.divider} />
           <Text
             style={{
               fontSize: 12,
@@ -74,6 +80,7 @@ const ResumePDF = () => {
         <View>
           <View style={styles.section}>
             <Text style={styles.heading}>Education</Text>
+            <View style={styles.divider} />
             <View
               style={{
                 display: "flex",
@@ -107,6 +114,7 @@ const ResumePDF = () => {
         <View>
           <View style={styles.section}>
             <Text style={styles.heading}>Experience</Text>
+            <View style={styles.divider} />
             <View
               style={{
                 display: "flex",
@@ -136,6 +144,7 @@ const ResumePDF = () => {
         <View>
           <View style={styles.section}>
             <Text style={styles.heading}>Skills</Text>
+            <View style={styles.divider} />
             <Text style={styles.content}>{resume.skills}</Text>
           </View>
         </View>
@@ -144,6 +153,7 @@ const ResumePDF = () => {
         <View>
           <View style={styles.section}>
             <Text style={styles.heading}>Projects</Text>
+            <View style={styles.divider} />
             <View>
               <Text style={styles.content}>{resume.project1}</Text>
               <Text style={styles.content}>{resume.project2}</Text>
