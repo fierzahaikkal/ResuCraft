@@ -16,6 +16,7 @@ import { buttonVariants } from "./ui/button";
 import { Menu } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
 import { LogoIcon } from "./Icons";
+import { Link } from "react-router-dom";
 
 interface RouteProps {
   href: string;
@@ -23,10 +24,6 @@ interface RouteProps {
 }
 
 const routeList: RouteProps[] = [
-  {
-    href: "/resume/create",
-    label: "Buat CV",
-  },
   {
     href: "#features",
     label: "Fitur",
@@ -79,15 +76,17 @@ export const Navbar = () => {
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="mt-4 flex flex-col items-center justify-center gap-2">
+                  <Link
+                    to="/resume/create"
+                    className={buttonVariants({ variant: "default" })}
+                  >
+                    Buat CV
+                  </Link>
                   {routeList.map(({ href, label }: RouteProps) => (
                     <a
                       key={label}
                       href={href}
-                      className={
-                        href == "/resume/create"
-                          ? buttonVariants({ variant: "default" })
-                          : buttonVariants({ variant: "ghost" })
-                      }
+                      className={buttonVariants({ variant: "ghost" })}
                     >
                       {label}
                     </a>
@@ -99,19 +98,21 @@ export const Navbar = () => {
 
           {/* desktop */}
           <nav className="hidden gap-2 md:flex">
+            <Link
+              to="/resume/create"
+              className={`text-[17px] ${buttonVariants({
+                variant: "default",
+              })}`}
+            >
+              Buat CV
+            </Link>
             {routeList.map((route: RouteProps, i) => (
               <a
                 href={route.href}
                 key={i}
-                className={
-                  i == 0
-                    ? `text-[17px] ${buttonVariants({
-                        variant: "default",
-                      })}`
-                    : `text-[17px] ${buttonVariants({
-                        variant: "ghost",
-                      })}`
-                }
+                className={`text-[17px] ${buttonVariants({
+                  variant: "ghost",
+                })}`}
               >
                 {route.label}
               </a>
