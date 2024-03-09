@@ -8,7 +8,6 @@ import {
 import responsive from "../assets/responsive.svg";
 import intuitive from "../assets/intuitive.svg";
 import ai from "../assets/ai.svg";
-import { TextReveal } from "./motion/TextReveal";
 import { Motion } from "./motion/Motion";
 import { fromBottom } from "@/lib/variants";
 
@@ -37,11 +36,10 @@ export const Features = () => {
   return (
     <section id="features" className="container space-y-8 py-24 sm:py-32">
       <h2 className="text-3xl font-bold md:text-center lg:text-4xl">
-        <TextReveal text="Banyak" />
-        <TextReveal
-          text="Fitur Menarik"
-          className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent"
-        />
+        <span>Banyak </span>
+        <span className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent">
+          Fitur Menarik
+        </span>
       </h2>
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -51,9 +49,7 @@ export const Features = () => {
               <CardHeader>
                 <CardTitle>{title}</CardTitle>
               </CardHeader>
-
               <CardContent>{description}</CardContent>
-
               <CardFooter>
                 <img
                   src={image}

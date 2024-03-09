@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { MedalIcon, MapIcon, PlaneIcon, GiftIcon } from "../components/Icons";
-import { TextReveal } from "./motion/TextReveal";
 import { Motion } from "./motion/Motion";
 import { fromBottom } from "@/lib/variants";
 
@@ -35,16 +34,16 @@ export const HowItWorks = () => {
   return (
     <section id="howItWorks" className="container py-24 text-center sm:py-32">
       <h2 className="text-3xl font-bold md:text-4xl ">
-        <TextReveal text="Bagaimana Cara" />
-        <TextReveal
-          text="Kerjanya?"
-          className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent"
-        />
+        <span>Bagaimana Cara </span>
+        <span className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent">
+          Kerjanya?
+        </span>
         <br />
-        <TextReveal text="Panduan Langkah-demi-Langkah" />
+        <p>Panduan Langkah-demi-Langkah</p>
       </h2>
       <p className="mx-auto mb-8 mt-4 text-xl text-muted-foreground md:w-3/4">
-        <TextReveal text=" Bangun resume Anda dengan mudah dan cepat menggunakan aplikasi kami. Dapatkan pekerjaan impian Anda sekarang!" />
+        Bangun resume Anda dengan mudah dan cepat menggunakan aplikasi kami.
+        Dapatkan pekerjaan impian Anda sekarang!
       </p>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">

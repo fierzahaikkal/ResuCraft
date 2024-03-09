@@ -4,7 +4,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { TextReveal } from "./motion/TextReveal";
 import { Motion } from "./motion/Motion";
 import { opacityIn } from "@/lib/variants";
 
@@ -44,11 +43,10 @@ export const FAQ = () => {
   return (
     <section id="faq" className="container py-24 sm:py-32">
       <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-        <TextReveal text="Pertanyaan yang Sering Diajukan" />
-        <TextReveal
-          text="(FAQ)"
-          className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent"
-        />
+        <span>Pertanyaan yang Sering Diajukan </span>
+        <span className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent">
+          (FAQ)
+        </span>
       </h2>
 
       <Accordion type="single" collapsible className="AccordionRoot w-full">
@@ -56,11 +54,10 @@ export const FAQ = () => {
           <Motion variants={opacityIn} custom={index}>
             <AccordionItem key={value} value={value}>
               <AccordionTrigger className="text-left">
-                <TextReveal text={question} />
+                <p>{question}</p>
               </AccordionTrigger>
               <AccordionContent>
-                {" "}
-                <TextReveal text={answer} />
+                <p>{answer}</p>
               </AccordionContent>
             </AccordionItem>
           </Motion>
@@ -68,12 +65,12 @@ export const FAQ = () => {
       </Accordion>
 
       <h3 className="mt-4 font-medium">
-        <TextReveal text="Masih memiliki pertanyaan?" />
+        <p>Masih memiliki pertanyaan?</p>
         <a
           href="#"
           className="border-primary text-primary transition-all hover:border-b-2"
         >
-          <TextReveal text="Hubungi kami" />
+          <p>Hubungi kami</p>
         </a>
       </h3>
     </section>

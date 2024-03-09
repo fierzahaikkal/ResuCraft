@@ -1,6 +1,5 @@
 import { fromBottom } from "@/lib/variants";
 import { Motion } from "./motion/Motion";
-import { TextReveal } from "./motion/TextReveal";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
   Card,
@@ -62,16 +61,16 @@ export const Testimonials = () => {
   return (
     <section id="testimonials" className="container py-24 sm:py-32">
       <h2 className="text-3xl font-bold md:text-4xl">
-        <TextReveal text="Temukan Alasan" />
-        <TextReveal
-          text="Mengapa"
-          className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent"
-        />
-        <TextReveal text="Orang-orang Menyukai ResuCraft" />
+        Temukan Alasan
+        <span className="bg-gradient-to-b from-primary/60 to-primary bg-clip-text text-transparent">
+          {" "}
+          Mengapa
+        </span>
+        <span> Orang-orang Menyukai ResuCraft</span>
       </h2>
 
       <p className="pb-8 pt-4 text-xl text-muted-foreground">
-        <TextReveal text="Temukan pengalaman para pengguna ResuCraft di bawah ini!" />
+        Temukan pengalaman para pengguna ResuCraft di bawah ini!{" "}
       </p>
 
       <div className="mx-auto grid columns-2 space-y-4 sm:block md:grid-cols-2 lg:columns-3 lg:grid-cols-4 lg:gap-6 lg:space-y-6">
