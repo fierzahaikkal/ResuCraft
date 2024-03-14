@@ -127,15 +127,28 @@ const ResumePDF = () => {
             </View>
             <View
               style={{
+                textAlign: "justify",
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "column",
                 justifyContent: "flex-start",
                 marginTop: 8,
               }}
             >
-              <Text style={styles.content}>{resume.experience.startDate}</Text>
-              <Text style={styles.content}>-</Text>
-              <Text style={styles.content}>{resume.experience.endDate}</Text>
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <Text style={styles.content}>
+                  {resume.experience.startDate}
+                </Text>
+                <Text style={styles.content}>{resume.experience.endDate}</Text>
+              </View>
+              <Text style={styles.content}>
+                {resume.experience.description}
+              </Text>
             </View>
           </View>
         </View>
